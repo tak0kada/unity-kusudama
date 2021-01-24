@@ -9,6 +9,8 @@ public class Kusudama : MonoBehaviour
     private GameObject right;
     private Quaternion lorigin;
     private Quaternion rorigin;
+    private bool opening = false;
+    private float angle = 0;
 
 
     public static Kusudama Create(Vector3 position, float radius = 1.0f)
@@ -35,10 +37,7 @@ public class Kusudama : MonoBehaviour
 
     public void Open()
     {
-        left.transform.Rotate(0, 0, -60);
-        left.transform.position += new Vector3(-1.732f/2, 0.5f, 0);
-        right.transform.Rotate(0, 0, -60);
-        right.transform.position += new Vector3(1.732f/2, 0.5f, 0);
+        opening = true;
     }
 
     public void Close()
@@ -47,6 +46,25 @@ public class Kusudama : MonoBehaviour
         left.transform.rotation = lorigin;
         right.transform.localPosition = Vector3.zero;
         right.transform.rotation = rorigin;
+
+        angle = 0;
+        opening = false;
+    }
+
+    private void Update()
+    {
+        float dangle = 150 * Time.deltaTime;
+        if (opening)
+        {
+            angle += dangle;
+            if (angle > 60)
+            {
+                opening = false;
+            }
+
+            left.transform.RotateAround(transform.position + new Vector3(0, 1, 0), new Vector3(0, 0, 1), -dangle);
+            right.transform.RotateAround(transform.position + new Vector3(0, 1, 0), new Vector3(0, 0, 1), dangle);
+        }
     }
 }
 
