@@ -7,7 +7,7 @@ using UnityEngine;
 class Particle : MonoBehaviour
 {
     private const float size = 0.4f;
-    private static readonly Color[] colors = new Color[5]{Color.red, Color.blue, Color.yellow, Color.green, Color.gray};
+    private static readonly Color[] colors = new Color[]{Color.red, Color.blue, Color.yellow, Color.green, Color.gray, Color.white};
 
     private float ax;
     private float ay;
@@ -32,7 +32,7 @@ class Particle : MonoBehaviour
     {
         var g = new GameObject("Particle");
         var particle = g.AddComponent<Particle>();
-        particle.renderer.material.color = colors[UnityEngine.Random.Range(0, 5)];
+        particle.renderer.material.color = colors[UnityEngine.Random.Range(0, colors.Length)];
         g.transform.position = position;
         particle.q = q;
         particle.transform.rotation = q;
