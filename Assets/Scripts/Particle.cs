@@ -44,10 +44,16 @@ class Particle : MonoBehaviour
     public void Drop(float time)
     {
         float r = 0.2f;
-        ax += 1.1f * Normal.Next(0, r);
+        ax += 0.8f * Normal.Next(0, r);
         ay += Normal.Next(0, r) - 0.1f;
         transform.position += new Vector3(ax * time, ay * time, 0);
         transform.rotation *= Quaternion.Lerp(Quaternion.identity, q, 0.08f);
+    }
+
+    public IEnumerator DropCoroutine(float time)
+    {
+        Drop(time);
+        yield return null;
     }
 
     public bool OutOfScreen()

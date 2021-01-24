@@ -5,31 +5,51 @@ using UnityEngine;
 
 public class Kusudama : MonoBehaviour
 {
-    private int n = 0;
+    private float timeElapsed = 0;
     private Shell shell;
     private List<Particle> particles = new List<Particle>();
 
-    void Awake()
+
+    private void Awake()
     {
         shell = Shell.New(new Vector3(0, 3.5f, 0));
-        for (int i = 0; i < 1000; ++i)
+        for (int i = 0; i < 4000; ++i)
         {
             var pos = shell.transform.position + new Vector3(Normal.Next(0, 0.2f), Normal.Next(0, 0.2f));
             particles.Add(Particle.New(pos, UnityEngine.Random.rotation));
         }
     }
 
-    // Update is called once per frame
+    private void Start()
+    {
+        StartCoroutine(ParticleCoroutine());
+    }
+
+    private IEnumerator ParticleCoroutine()
+    {
+        while (true)
+        {
+            foreach (var p in particles)
+            {
+                p.Drop(Time.deltaTime);
+            }
+            yield return null;
+        }
+    }
+
     void Update()
     {
-        if (n == 0)
+        if (timeElapsed < 0.1f)
         {
-            shell.Open();
-            ++n;
+            timeElapsed += Time.deltaTime;
+            if (timeElapsed > 0.1f)
+            {
+                shell.Open();
+            }
         }
-        foreach(var p in particles)
-        {
-            p.Drop(Time.deltaTime);
-        }
+        // foreach(var p in particles)
+        // {
+        //     p.Drop(Time.deltaTime);
+        // }
     }
 }
