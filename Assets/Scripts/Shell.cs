@@ -60,6 +60,7 @@ public class Shell : MonoBehaviour
             if (angle > 60)
             {
                 opening = false;
+                return;
             }
 
             left.transform.RotateAround(transform.position + new Vector3(0, 1, 0), new Vector3(0, 0, 1), -dangle);
@@ -71,7 +72,8 @@ public class Shell : MonoBehaviour
 
 public class LeftHemisphere : MonoBehaviour
 {
-    private const int n = 30;
+    private const int n = 12;
+    private const float cubeSize = 3.0f / n;
     private List<GameObject> voxels = new List<GameObject>();
 
 
@@ -120,7 +122,7 @@ public class LeftHemisphere : MonoBehaviour
     {
         var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         cube.transform.position = new Vector3(x, y, z);
-        cube.transform.localScale = new Vector3(2.1f / n, 2.1f / n, 2.1f / n);
+        cube.transform.localScale = Vector3.one * cubeSize;
         cube.GetComponent<Renderer>().material.color = Color.yellow;
         cube.transform.parent = gameObject.transform;
 
