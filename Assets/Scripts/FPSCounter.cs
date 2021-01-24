@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class FPSCounter : MonoBehaviour
 {
     // ref: https://baba-s.hatenablog.com/entry/2017/12/20/000200
@@ -11,13 +12,13 @@ public class FPSCounter : MonoBehaviour
     private int frames;
     private float timeleft = updateInterval;
     private float fps;
-private Text text;
+    private Text text;
 
 
-private void Awake()
-{
-    text = GetComponent<Text>();
-}
+    private void Awake()
+    {
+        text = GetComponent<Text>();
+    }
 
     private void Update()
     {
