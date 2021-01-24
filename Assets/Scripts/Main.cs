@@ -9,7 +9,7 @@ public class Main : MonoBehaviour
 
     void Awake()
     {
-        kusudama = Kusudama.Create(new Vector3(0, 4, 0));
+        kusudama = Kusudama.Create(new Vector3(0, 3.5f, 0));
         // kusudama.Close();
     }
 
