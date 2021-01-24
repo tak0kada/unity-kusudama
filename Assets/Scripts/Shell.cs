@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Kusudama : MonoBehaviour
+public class Shell : MonoBehaviour
 {
     private GameObject left;
     private GameObject right;
@@ -13,26 +13,26 @@ public class Kusudama : MonoBehaviour
     private float angle = 0;
 
 
-    public static Kusudama Create(Vector3 position, float radius = 1.0f)
+    public static Shell New(Vector3 position, float radius = 1.0f)
     {
-        var g = new GameObject("Kusudama");
-        var k = g.AddComponent<Kusudama>() as Kusudama;
+        var g = new GameObject("Shell");
+        var s = g.AddComponent<Shell>() as Shell;
         {
-            k.left = new GameObject("LeftHemisphere");
-            k.left.transform.parent = g.transform;
-            k.left.AddComponent<LeftHemisphere>();
-            k.lorigin = k.left.transform.rotation;
+            s.left = new GameObject("LeftHemisphere");
+            s.left.transform.parent = g.transform;
+            s.left.AddComponent<LeftHemisphere>();
+            s.lorigin = s.left.transform.rotation;
 
-            k.right = new GameObject("RightHemisphere");
-            k.right.transform.parent = g.transform;
-            k.right.AddComponent<LeftHemisphere>();
-            k.right.transform.Rotate(0, 180, 0);
-            k.rorigin = k.right.transform.rotation;
+            s.right = new GameObject("RightHemisphere");
+            s.right.transform.parent = g.transform;
+            s.right.AddComponent<LeftHemisphere>();
+            s.right.transform.Rotate(0, 180, 0);
+            s.rorigin = s.right.transform.rotation;
         }
 
         g.transform.position = position;
         g.transform.localScale = Vector3.one * radius;
-        return k;
+        return s;
     }
 
     public void Open()

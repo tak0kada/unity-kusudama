@@ -5,12 +5,12 @@ using UnityEngine;
 public class Main : MonoBehaviour
 {
     private int n = 0;
-    private Kusudama kusudama;
+    private Shell shell;
 
     void Awake()
     {
-        kusudama = Kusudama.Create(new Vector3(0, 3.5f, 0));
-        // kusudama.Close();
+        shell = Shell.New(new Vector3(0, 3.5f, 0));
+        // shell.Close();
     }
 
     // Update is called once per frame
@@ -18,7 +18,7 @@ public class Main : MonoBehaviour
     {
         if (n == 0)
         {
-            kusudama.Open();
+            shell.Open();
             ++n;
         }
     }
