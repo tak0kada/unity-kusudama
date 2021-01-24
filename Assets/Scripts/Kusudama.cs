@@ -14,8 +14,8 @@ public class Kusudama : MonoBehaviour
         shell = Shell.New(new Vector3(0, 3.5f, 0));
         for (int i = 0; i < 1000; ++i)
         {
-            var pos = shell.transform.position + new Vector3(Normal.Next(0, 0.5f), Normal.Next(0, 0.5f));
-            particles.Add(Particle.New(shell.transform.position, UnityEngine.Random.rotation));
+            var pos = shell.transform.position + new Vector3(Normal.Next(0, 0.2f), Normal.Next(0, 0.2f));
+            particles.Add(Particle.New(pos, UnityEngine.Random.rotation));
         }
     }
 
