@@ -93,16 +93,37 @@ public class LeftHemisphere : MonoBehaviour
                         continue;
                     }
                     float z = Mathf.Sqrt(1 - x*x - y*y);
-
-                    var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    cube.transform.position = new Vector3(x, y, z * sign);
-                    cube.transform.localScale = new Vector3(2.0f / n, 2.0f / n, 2.0f / n);
-                    cube.GetComponent<Renderer>().material.color = Color.yellow;
-                    cube.transform.parent = gameObject.transform;
-
-                    voxels.Add(cube);
+                    AddCube(x, y, z * sign);
                 }
             }
         }
+
+        // fill center part
+        for (int zi = -6; zi < 6 + 1; ++zi)
+        {
+            for (int yi = 0; yi < n; ++yi)
+            {
+                float y = -1.0f + 0.5f * d + yi * d;
+                float z = zi * d;
+
+                if (y*y + z*z > 1)
+                {
+                    continue;
+                }
+                float x = -Mathf.Sqrt(1 - y*y - z*z);
+                AddCube(x, y, z);
+            }
+        }
+    }
+
+    private void AddCube(float x, float y, float z)
+    {
+        var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        cube.transform.position = new Vector3(x, y, z);
+        cube.transform.localScale = new Vector3(2.1f / n, 2.1f / n, 2.1f / n);
+        cube.GetComponent<Renderer>().material.color = Color.yellow;
+        cube.transform.parent = gameObject.transform;
+
+        voxels.Add(cube);
     }
 }
