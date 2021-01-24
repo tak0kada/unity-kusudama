@@ -512,7 +512,7 @@ GameObject:
   - component: {fileID: 1345674279}
   - component: {fileID: 1345674278}
   m_Layer: 0
-  m_Name: Main
+  m_Name: Kusudama
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
